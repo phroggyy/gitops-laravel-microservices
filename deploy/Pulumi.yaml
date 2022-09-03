@@ -1,0 +1,3 @@
+name: gitops-laravel-infra
+description: Civo setup for a k8s cluster for gitops-based laravel microservices app
+runtime: nodejs

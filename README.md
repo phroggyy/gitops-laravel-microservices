@@ -25,3 +25,21 @@ The second piece is developer experience. This is hit or miss, and it's very eas
 repo exists - to steer you clear of bad ideas. When executed well, microservices can be developed independently,
 giving your team a great benefit, particularly if you have a very wide application where every developer doesn't need to
 know every bit. That is further multiplied when you have multiple teams, that can now take true ownership of _just their piece_.
+
+## Development
+
+### Prerequisites
+
+1. You need to have pulumi installed to setup the infrastructure from local. This repo also has a Github action
+   to do it in CI. To set it up from local, run `brew install pulumi/tap/pulumi` if you're on a mac. Also install NodeJS.
+2. This deploys onto Kubernetes, so you should have the kubernetes CLI (`kubectl`) on your machine.
+3. The cluster in Pulumi is configured on top of [Civo](https://civo.com) (where you can sign up and get $250 of credits,
+   and the clusters are cheap), so I recommend installing the `civo` CLI following the docs: https://www.civo.com/docs/cli/617, and connect to it (`civo apikey add`) .
+
+
+## Deployment
+
+1. Run `pulumi up`. This will create a Kubernetes cluster with ArgoCD installed.
+2. Load your `kubeconfig` file from Civo: `civo k8s config -s gitops-laravel`
+3. Switch Kubernetes context: `kubectl config use-context gitops-laravel`
+4. Ensure you have a connection: `kubectl get ns` (you should also see your argo namespace here)
