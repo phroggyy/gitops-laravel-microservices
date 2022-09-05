@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: emissary-ingress
+spec:
+  project: default
+  source:
+    chart: emissary-ingress
+    repoURL: https://app.getambassador.io
+    targetRevision: 8.1.0 # Chart version 8.1.0 maps to Emissary 3.1.0
+    helm:
+      releaseName: emissary-ingress
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: emissary
+  syncPolicy:
+    automated: {}
