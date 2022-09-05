@@ -1,6 +1,5 @@
 import * as k8s from "@pulumi/kubernetes";
 import * as civo from "@pulumi/civo";
-import { Command } from "@pulumi/command/local";
 
 const firewall = new civo.Firewall("civo-firewall", {
   name: "gitops-laravel",
@@ -20,16 +19,6 @@ const cluster = new civo.KubernetesCluster("civo-k3s-cluster", {
 })
 
 export const clusterName = cluster.name
-
-// const devCluster = new civo.KubernetesCluster('civo-k3s-dev-cluster', {
-//   name: 'laravel-dev',
-//   pools: {
-//     nodeCount: 3,
-//     size: 'g4s.kube.small'
-//   },
-//   region: 'LON1',
-//   firewallId: firewall.id,
-// })
 
 // setup our gitops needs
 let provider = new k8s.Provider('default-k8s-provider', {
