@@ -39,7 +39,8 @@ know every bit. That is further multiplied when you have multiple teams, that ca
 
 ## Deployment
 
+1. Set your Civo API key: `pulumi config set civo:token XXXXXXXXXXXXXX --secret`
 1. Run `pulumi up`. This will create a Kubernetes cluster with ArgoCD installed.
-2. Load your `kubeconfig` file from Civo: `civo k8s config -s gitops-laravel`
-3. Switch Kubernetes context: `kubectl config use-context gitops-laravel`
-4. Ensure you have a connection: `kubectl get ns` (you should also see your argo namespace here)
+1. Load your `kubeconfig` file from Civo: `civo k8s config -s gitops-laravel`
+1. Switch Kubernetes context: `kubectl config use-context gitops-laravel`
+1. Ensure you have a connection: `kubectl get ns` (you should also see your argo namespace here)
